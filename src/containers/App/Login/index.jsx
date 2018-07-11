@@ -36,6 +36,12 @@ let reset = Loadable({
   serverSideRequirePath: path.resolve(__dirname, "../../User/reset")
 });
 
+let reset_new = Loadable({
+  loader: () => fakeDelay(400).then(() => import("../../User/passReset")),
+  loading: Loading,
+  serverSideRequirePath: path.resolve(__dirname, "../../User/passReset")
+});
+
 let create = Loadable({
   loader: () => fakeDelay(400).then(() => import("../../User/create")),
   loading: Loading,
@@ -67,6 +73,7 @@ class Login extends Component {
               <Route exact path="/" component={login} />
               <Route exact path="/login" component={login} />
               <Route exact path="/reset" component={reset} />
+              <Route exact path="/reset-new" component={reset_new} />
               <Route exact path="/create" component={create} />
             </Grid>
 

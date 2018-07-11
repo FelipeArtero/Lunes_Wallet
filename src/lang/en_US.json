@@ -1,9 +1,11 @@
 {
   "PLACEHOLDER_EMAIL": "name@email.com",
   "PLACEHOLDER_PASSWORD": "Password",
+  "PLACEHOLDER_PASSWORD_REPEAT": "Repeat Password",
 
   "BTN_SUBMIT": "Submit",
   "BTN_LOGIN": "Login",
+  "BTN_SAVE": "Save",
 
   "LOGIN_SLIDE_DESCRIPTION_1":
     "Enjoy the usability and technology of this incredible portfolio and store your crypto-coins with a high level of security ...",
@@ -18,5 +20,13 @@
   "LOGIN_FOOTER_HOME": "Main",
   "LOGIN_FOOTER_SUPPORT": "Support",
   "LOGIN_FOOTER_LANG": "English",
-  "LOGIN_FOOTER": "2018 lunes.io All Rights Reserved"
+  "LOGIN_FOOTER": "2018 lunes.io All Rights Reserved",
+
+  "RESET_PASS_LABEL": "Input the new password",
+  "RESET_PASS_DESCRIPTION_2": "Conter pelo menos 3 dos seguintes itens:",
+  "RESET_PASS_ITEM_1": "Letra maiúscula",
+  "RESET_PASS_ITEM_2": "Letra minúscula",
+  "RESET_PASS_ITEM_3": "Números",
+  "RESET_PASS_ITEM_4": "Símbolos",
+  "RESET_PASS_ERROR_1": "A senha deve atender os itens descritos."
 }
