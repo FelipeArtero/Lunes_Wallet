@@ -23,10 +23,12 @@
   "LOGIN_FOOTER": "2018 lunes.io All Rights Reserved",
 
   "RESET_PASS_LABEL": "Input the new password",
-  "RESET_PASS_DESCRIPTION_2": "Conter pelo menos 3 dos seguintes itens:",
-  "RESET_PASS_ITEM_1": "Letra maiúscula",
-  "RESET_PASS_ITEM_2": "Letra minúscula",
-  "RESET_PASS_ITEM_3": "Números",
-  "RESET_PASS_ITEM_4": "Símbolos",
-  "RESET_PASS_ERROR_1": "A senha deve atender os itens descritos."
+  "RESET_PASS_DESCRIPTION_2": "Contain at least 3 list items:",
+  "RESET_PASS_ITEM_1": "Upcase letter",
+  "RESET_PASS_ITEM_2": "Downcase letter",
+  "RESET_PASS_ITEM_3": "Numbers",
+  "RESET_PASS_ITEM_4": "Symbols",
+  "RESET_PASS_ITEM_5": "Min 8 characters",
+  "RESET_PASS_ERROR_1": "The password must meet the items described.",
+  "RESET_PASS_ERROR_2": "Passwords are not the same"
 }

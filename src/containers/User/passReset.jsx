@@ -2,7 +2,6 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import i18n from "../../utils/i18n";
-import { Link } from "react-router-dom";
 import validator from "validator";
 
 // ICONS
@@ -18,11 +17,11 @@ import style from "./style.css";
 
 const validations = [
   {
-    text: i18n.t("RESET_PASS_ITEM_1"),
+    text: i18n.t("RESET_PASS_ITEM_2"),
     valid: true
   },
   {
-    text: i18n.t("RESET_PASS_ITEM_2"),
+    text: i18n.t("RESET_PASS_ITEM_1"),
     valid: true
   },
   {
@@ -34,7 +33,7 @@ const validations = [
     valid: true
   },
   {
-    text: "Mínimo de 8 caracteres",
+    text: i18n.t("RESET_PASS_ITEM_5"),
     valid: true
   }
 ];
@@ -60,8 +59,6 @@ class PassReset extends React.Component {
 
   handleValidate = event => {
     event.preventDefault();
-    // count of possibles erros
-    //const total_errors = this.state.validate.length;
     let errors = 0;
 
     // fields
@@ -75,7 +72,7 @@ class PassReset extends React.Component {
     const passRules4 = /^(?=.{8,})/g; // minimo de 8 caracteres
 
     if (pass1 !== pass2) {
-      alert("Senhas nao são iguais");
+      alert(i18n.t("RESET_PASS_ERROR_2"));
       return;
     }
 
@@ -116,13 +113,15 @@ class PassReset extends React.Component {
 
     this.setState({ validate: validations });
 
-    if (errors > 3) {
+    if (errors > 2) {
       this.setState({ error: true });
+    } else {
+      alert("passou");
+      // else , action to save a new password
+      //
+      //
+      //
     }
-    // else , action to save a new password
-    //
-    //
-    //
   };
 
   renderError = () => {
@@ -162,29 +161,19 @@ class PassReset extends React.Component {
         </div>
 
         {/* itens has password */}
-        <div style={{ marginBottom: 20 }}>
+        <div className={style.itensValid}>
           {this.state.validate.map((value, key) => {
             return (
-              <div key={key} style={{ fontSize: "10px" }}>
+              <div key={key}>
                 {value.valid ? (
                   <DoneIcon
-                    style={{
-                      margin: 0,
-                      marginBottom: -8,
-                      marginRight: 10,
-                      width: 14,
-                      color: "green"
-                    }}
+                    className={style.iconListValid}
+                    style={{ color: "green" }}
                   />
                 ) : (
                   <ClearIcon
-                    style={{
-                      margin: 0,
-                      marginBottom: -8,
-                      marginRight: 10,
-                      width: 14,
-                      color: "red"
-                    }}
+                    className={style.iconListValid}
+                    style={{ color: "red" }}
                   />
                 )}
                 {value.text} <br />

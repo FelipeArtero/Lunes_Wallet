@@ -10,6 +10,7 @@
 2. FOOTER 
   2.1. LINKS
 
+3. RESET PASS
 */
 
 /* ------------------------------------------------------------------------- */
@@ -118,7 +119,7 @@
   margin-right: 15px;
 }
 
-/* */
+/* 3. RESET PASS */
 :local(.iconHeader) {
   display: block;
   margin-left: auto;
@@ -130,4 +131,14 @@
   font-size: 10px;
   display: block;
   text-align: center;
+}
+:local(.itensValid) {
+  margin-bottom: 20px;
+  font-size: 10px;
+}
+:local(.iconListValid) {
+  margin: 0;
+  margin-bottom: -8px;
+  margin-right: 10px;
+  width: 14px;
 }
