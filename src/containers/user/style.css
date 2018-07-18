@@ -22,7 +22,6 @@
   4.5 LINKS
   4.6 ICONS 
   4.7 LOGO
-
 */
 
 /* ------------------------------------------------------------------------- */
@@ -220,9 +219,26 @@
 }
 
 /* 4.6 ICONS */
-:local(.iconArrow) {
-  display: inline;
+:local(.iconArrowForward) {
   float: right;
+  width: 24px;
+  margin-top: 6px;
 } 
+
+:local(.iconArrowBack) {
+  composes: iconArrowForward;
+  float: left;
+} 
+
+/* 4.7 LOGO */
+:local(.logoReset) {
+  composes: logo;
+  padding-right: 24px;
+}
+
+:local(.logoSendEmailReset) {
+  composes: logo;
+  padding-left: 24px;
+}
 
 /* ------------------------------------------------------------------------- */
