@@ -61,15 +61,7 @@ class Reset extends React.Component {
     let { errors } = this.state;
     return (
       <div>
-        <Link to="/login">
-          <img src="../../images/icons/2x/baseline_arrow_back_white_18dp.png" className={style.iconArrowBack} />
-        </Link>
-
-        <img src="../../images/logo.svg" className={style.logoReset} />
-        <img src="../../../../images/reset/ic-email.png" className={style.iconEmail} />
-
         <div className={style.resetHeader}>{i18n.t("RESET_HEADER")}</div>
-
         <div className={style.p}>{i18n.t("RESET_INSTRUCTIONS")}</div>
         <div className={style.p2}>{i18n.t("RESET_INSTRUCTIONS2")}</div>
 
@@ -91,14 +83,6 @@ class Reset extends React.Component {
   cont_2 = () => {
     return (
       <div>
-        <Link to="/login">
-          <img src="../../images/icons/2x/baseline_arrow_forward_white_18dp.png" className={style.iconArrowForward} />
-        </Link>
-
-        <img src="../../images/logo.svg" className={style.logoSendEmailReset} />
-
-        <img src="../../../../images/reset/ic-email.png" className={style.iconEmail} />
-
         <div className={style.resetEmailSend}>{i18n.t("RESET_EMAIL_SEND")}</div>
 
         <button className={style.buttonBorderGreen}>
@@ -116,6 +100,14 @@ class Reset extends React.Component {
     let contents = [this.cont_1(), this.cont_2()];
     return (
       <div className={style.contGeneral}>
+
+      <Link to="/login">
+          <img src="../../images/icons/2x/baseline_arrow_back_white_18dp.png" className={style.iconArrowBack} />
+        </Link>
+
+        <img src="../../images/logo.svg" className={style.logoReset} />
+
+        <img src="../../../../images/reset/ic-email.png" className={style.iconEmail} />
 
         {contents[step]}
 
