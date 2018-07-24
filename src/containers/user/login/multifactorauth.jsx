@@ -47,8 +47,6 @@ class MultiFactorAuth extends React.Component {
         let inputsValue = Object.keys(inputs).map(index => inputs[index].value);
         let pinValue = inputsValue.join("").toString();
         
-        clearMessage();
-
         if (errors.length > 0) {
             errorInput(messageError);
             return this.setState({
