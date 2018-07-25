@@ -37,7 +37,6 @@ class CreateUser extends React.Component {
     let { inputs } = this.state;
     let { name, type, value } = input;
     if (type === "checkbox") {
-      console.warn(input)
       this.setState({
         ...this.state,
         inputs: {
@@ -169,7 +168,12 @@ class CreateUser extends React.Component {
               onChange={event => {
                 this.getInput(event.target);
               }}
+              className={
+                errors
+                  ? style.checkboxError
+                  : ""}
             />
+
 
             <div className={style.acceptTermsOfServices}>
               {i18n.t("NEW_ACCOUNT_ACCEPT_TERMS")}
@@ -182,12 +186,12 @@ class CreateUser extends React.Component {
           <button
             className={
               !errors &&
-              inputs.lastName &&
-              inputs.firstName &&
-              inputs.email &&
-              inputs.password &&
-              inputs.passwordRepeat &&
-              inputs.checkbox.checkboxTerms ? style.buttonGreen : style.buttonBorderGreen}
+                inputs.lastName &&
+                inputs.firstName &&
+                inputs.email &&
+                inputs.password &&
+                inputs.passwordRepeat &&
+                inputs.checkbox.checkboxTerms ? style.buttonGreen : style.buttonBorderGreen}
             onClick={() => {
               this.inputValidator();
             }}

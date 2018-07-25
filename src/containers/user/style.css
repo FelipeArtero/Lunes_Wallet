@@ -27,6 +27,7 @@
 6. CREATE / NEW ACCOUNT
   6.1 TEXTS
   6.2 ICONS
+  6.3 INPUT - CHECKBOX
 
 7. TWO FACTORS AUTHENTICATOR 
   7.1 INPUT
@@ -350,6 +351,11 @@
 
 :local(.arrowToLoginAlign) {
   padding-left: 40%;
+}
+
+/* 6.3 INPUT - CHECKBOX */
+:local(.checkboxError) {
+  color: #ff445b;
 }
 
 /* ------------------------------------------------------------------------- */
