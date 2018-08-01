@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -68,7 +69,6 @@ class Seed extends React.Component {
   };
 
   setValueSeed = () => {
-
     let inputSeed = {
       type: "text",
       name: "seed",
@@ -83,13 +83,13 @@ class Seed extends React.Component {
         seed: inputSeed
       }
     });
-  }
+  };
 
   render() {
     let { loading } = this.props.user;
     let { seed } = this.state.inputs;
     let { buttonEnable, errors } = this.state;
-    
+
     return (
       <div>
         <img src="../../images/logo.svg" className={style.logo} />

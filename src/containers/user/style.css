@@ -61,7 +61,6 @@
 :local(.buttonPurpleClear) {
   composes: buttonPurpleClear from "../../components/bases/buttonBase.css";
   margin-bottom: 25px;
-  font-family: Roboto;
   font-weight: bold;
   font-size: 17px;
 }
