@@ -16,15 +16,18 @@ class CoinsInfo extends React.Component {
       <div>
         <div className={style.containerWallet}>
           <Grid item xs={12} sm={8} className={style.containerInfoCoins}>
-            <div className={style.coinSelected}>
-              <div className={style.nameCoinSelected}> {"Lunes"} </div>
-              <img
-                src="../../images/icons/coins/lunes.png"
-                className={style.logoCoinSelected}
-              />
-              <div className={style.percentageCoinSelected}> {"+7,63%"} </div>
 
-              <div className={style.valueCoinSelected}> {"$0.00545132"} </div>
+            <div className={style.coinSelected}>
+              <div>
+                <div className={style.nameCoinSelected}> {"Lunes"} </div>
+                <img
+                  src="../../images/icons/coins/lunes.png"
+                  className={style.logoCoinSelected}
+                />
+                <div className={style.percentageCoinSelected}> {"+7,63%"} </div>
+                <div className={style.valueCoinSelected}> {"$0.00545132"} </div>
+
+              </div>
             </div>
 
             <div className={style.floatRightInWeb}>
@@ -54,6 +57,8 @@ class CoinsInfo extends React.Component {
                 </div>
               </Hidden>
             </div>
+
+
           </Grid>
         </div>
 
