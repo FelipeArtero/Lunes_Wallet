@@ -1,13 +1,13 @@
 import React from "react";
 
 // STYLE
-import style from "./style.css";
+import style from "../../style.css";
 
 class BoxAmount extends React.Component {
   render() {
     return (
-      <div className={style.box}>
-        <img src="/images/coins/LUNES.png" className={style.iconCoin} />
+      <div className={style.modalBox}>
+        <img src="/images/coins/LUNES.png" className={style.modalIconCoin} />
         <div>Informe a quantidade que deseja enviar</div>
         <input
           className={style.txtamount}

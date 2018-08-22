@@ -134,8 +134,8 @@ class Menu extends React.Component {
 }
 
 Menu.propTypes = {
+  location: PropTypes.object,
   openMenu: PropTypes.bool.isRequired,
-  location: PropTypes.object.isRequired,
   actionMenu: PropTypes.func.isRequired,
   actionLogout: PropTypes.func.isRequired,
   user: PropTypes.object

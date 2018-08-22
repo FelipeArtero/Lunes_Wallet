@@ -11,7 +11,7 @@ import BoxResult from "./boxResult";
 import BoxResultError from "./boxResultError";
 
 // STYLE
-import style from "./style.css";
+import style from "../../style.css";
 
 class SendModal extends React.Component {
   constructor(props) {
@@ -21,17 +21,21 @@ class SendModal extends React.Component {
     };
   }
 
-  handleStep = () => {
+  nextStep = () => {
     this.setState({ step: this.state.step + 1 });
   };
+
+  previousStep = () => {
+    this.setState({ step: this.state.step - 1 });
+  }
 
   render() {
     switch (this.state.step) {
       case 0:
         return (
           <div className={style.baseStep}>
-            <BoxAddress />
-            <ButtonContinue action={this.handleStep} />
+            <BoxAddress nextPage={this.nextStep} previousPage={this.previousStep} />
+            <ButtonContinue action={this.nextStep} />
           </div>
         );
       case 1:
@@ -39,11 +43,9 @@ class SendModal extends React.Component {
           <div className={style.baseStep}>
             <BoxAmount />
 
-            <ButtonContinue action={this.handleStep} />
+            <ButtonContinue action={this.nextStep} />
             <button
-              onClick={() => {
-                this.setState({ step: this.state.step - 1 });
-              }}
+              onClick={this.previousStep}
             >
               voltar temporario
             </button>
@@ -54,11 +56,9 @@ class SendModal extends React.Component {
           <div className={style.baseStep}>
             <BoxFee />
 
-            <ButtonContinue action={this.handleStep} />
+            <ButtonContinue action={this.nextStep} />
             <button
-              onClick={() => {
-                this.setState({ step: this.state.step - 1 });
-              }}
+              onClick={this.previousStep}
             >
               voltar temporario
             </button>
@@ -69,11 +69,9 @@ class SendModal extends React.Component {
           <div className={style.baseStep}>
             <BoxConfirm />
 
-            <ButtonContinue action={this.handleStep} label="ENVIAR" />
+            <ButtonContinue action={this.nextStep} label="ENVIAR" />
             <button
-              onClick={() => {
-                this.setState({ step: this.state.step - 1 });
-              }}
+              onClick={this.previousStep}
             >
               voltar temporario
             </button>
@@ -84,11 +82,9 @@ class SendModal extends React.Component {
           <div className={style.baseStep}>
             <BoxProcess />
 
-            <ButtonContinue action={this.handleStep} />
+            <ButtonContinue action={this.nextStep} />
             <button
-              onClick={() => {
-                this.setState({ step: this.state.step - 1 });
-              }}
+              onClick={this.previousStep}
             >
               voltar temporario
             </button>
@@ -99,11 +95,9 @@ class SendModal extends React.Component {
           <div className={style.baseStep}>
             <BoxResult />
 
-            <ButtonContinue action={this.handleStep} label="ERRO" />
+            <ButtonContinue action={this.nextStep} label="ERRO" />
             <button
-              onClick={() => {
-                this.setState({ step: this.state.step - 1 });
-              }}
+              onClick={this.previousStep}
             >
               voltar temporario
             </button>
@@ -114,11 +108,9 @@ class SendModal extends React.Component {
           <div className={style.baseStep}>
             <BoxResultError />
 
-            <ButtonContinue action={this.handleStep} label="FECHAR" error />
+            <ButtonContinue action={this.nextStep} label="FECHAR" error />
             <button
-              onClick={() => {
-                this.setState({ step: this.state.step - 1 });
-              }}
+              onClick={this.previousStep}
             >
               voltar temporario
             </button>

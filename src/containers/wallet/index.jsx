@@ -4,42 +4,35 @@ import PropTypes from "prop-types";
 // REDUX
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { loadWalletInfo } from "../skeleton/redux/skeletonAction";
 import { setWalletLoading } from "./redux/walletAction";
 
 // COMPONENTS
 import CoinsBar from "./coinsBar";
 import CoinsInfo from "./coinsInfo";
-import Modal from "../../components/modal";
-import SendModal from "./modal/sendModal/";
+import Loading from "../../components/loading";
 
 class Wallet extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalSend: true
-    };
+  componentDidMount() {
+    let { setWalletLoading, loadWalletInfo, user } = this.props;
+    setWalletLoading(true);
+    loadWalletInfo(user.password);
   }
 
   renderContent = () => {
     let { loading } = this.props.wallet;
-    // console.warn("loading", loading);
-    // let { setWalletLoading } = this.props;
-
-    // setWalletLoading(true);
-
     if (loading) {
-      return <div>Carregando...</div>;
+      return (
+        <div>
+          <Loading color="lunes" />
+        </div>
+      );
     }
 
     return (
       <div>
         <CoinsBar />
         <CoinsInfo />
-        <Modal
-          title={"Transação"}
-          content={<SendModal />}
-          show={this.state.modalSend}
-        />
       </div>
     );
   };
@@ -50,17 +43,21 @@ class Wallet extends React.Component {
 }
 
 Wallet.propTypes = {
-  skeleton: PropTypes.object,
+  user: PropTypes.object,
+  wallet: PropTypes.object,
+  loadWalletInfo: PropTypes.func,
   setWalletLoading: PropTypes.func
 };
 
 const mapSateToProps = store => ({
+  user: store.user.user,
   wallet: store.wallet
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      loadWalletInfo,
       setWalletLoading
     },
     dispatch

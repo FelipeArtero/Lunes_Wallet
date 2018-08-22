@@ -87,14 +87,14 @@ class Content extends Component {
   }
 }
 
-connect.propTypes = {
+Content.propTypes = {
   errorRequest: PropTypes.func,
   user: PropTypes.object,
   skeleton: PropTypes.object,
   username: PropTypes.string,
   seed: PropTypes.string,
   password: PropTypes.string,
-  location: PropTypes.object.isRequired
+  location: PropTypes.object
 };
 
 const mapSateToProps = store => ({

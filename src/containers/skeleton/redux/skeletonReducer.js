@@ -33,7 +33,7 @@ const skeleton = (state = initialState, action) => {
     case "CHANGE_LOADING_GENERAL_STATE":
       return {
         ...state,
-        loading: !state.loading
+        loading: action.state ? action.state : false
       };
 
     case "CHANGE_SKELETON_ERROR_STATE":

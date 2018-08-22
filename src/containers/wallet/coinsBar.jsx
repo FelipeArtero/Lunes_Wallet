@@ -21,6 +21,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
+import Close from "@material-ui/icons/Close";
 
 // STYLE
 import style from "./style.css";
@@ -40,7 +41,7 @@ class CoinsBar extends React.Component {
   };
 
   renderArrowPercent = val => {
-    if (val < 0) {
+    if (parseFloat(val) < 0) {
       return <ArrowDropDown className={style.arrowPercentDown} />;
     } else {
       return <ArrowDropUp className={style.arrowPercentUp} />;
@@ -54,17 +55,20 @@ class CoinsBar extends React.Component {
 
     return Object.keys(coins).map((val, index) => {
       let coin = coins[val];
-      let coinBalance = coin.balance.available;
-      let coinFiatBalance = (
-        coinBalance * coin.price[defaultFiat].price
-      ).toFixed(2);
-      let coinPercent = coin.price.percent;
+      let coinStatus = coin.status === "active" ? true : false;
+      let coinBalance = coinStatus ? coin.balance.available : 0;
+      let coinFiatBalance = coinStatus
+        ? (coinBalance * coin.price[defaultFiat].price).toFixed(2)
+        : 0;
+      let coinPercent = coinStatus ? coin.price.percent : 0;
 
       return (
         <div
-          className={style.baseBoxCoin}
+          className={coinStatus ? null : style.boxCoinDisabled}
           key={index}
-          onClick={() => setSelectedCoin(coin.abbreviation)}
+          onClick={
+            coinPercent ? () => setSelectedCoin(coin.abbreviation) : null
+          }
         >
           <div
             className={
@@ -80,17 +84,25 @@ class CoinsBar extends React.Component {
               />
             </div>
             <Hidden smDown>
-              <div className={style.boxLabelCoin}>
-                {"$" + coinFiatBalance} <br />
-                <div className={style.labelPercent}>
-                  {this.renderArrowPercent(coinPercent)}
-                  {coinPercent}
+              {coinStatus ? (
+                <div className={style.boxLabelCoin}>
+                  {"$" + coinFiatBalance} <br />
+                  <div className={style.labelPercent}>
+                    {this.renderArrowPercent(coinPercent)}
+                    {coinPercent}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className={style.boxLabelCoinDisabled}>Unavailable</div>
+              )}
             </Hidden>
             <Hidden mdUp>
               <div className={style.boxArrowPercent}>
-                {this.renderArrowPercent(coinPercent)}
+                {coinStatus ? (
+                  this.renderArrowPercent(coinPercent)
+                ) : (
+                  <Close className={style.arrowPercentDisabled} />
+                )}
               </div>
             </Hidden>
           </div>
@@ -177,7 +189,6 @@ const mapSateToProps = store => ({
   wallet: store.wallet,
   skeleton: store.skeleton
 });
-
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

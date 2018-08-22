@@ -13,21 +13,13 @@ class Modal extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let { show } = this.props;
-    show ? this.handleOpenModal() : null
-  }
+  changeModalState = () => {
+    let { arrow } = this.props;
+    if(!arrow) {
+      return this.setState({ ...this.state, showModal: false});
+    }
 
-  // handleModal() {
-  //   this.setState({ showModal: !this.state.showModal });
-  // }
-
-  handleOpenModal() {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
+    return arrow;
   }
 
   renderHeader = () => {
@@ -37,7 +29,7 @@ class Modal extends React.Component {
       <div className={style.header}>
         <div
           className={style.headerImage}
-          onClick={() => this.handleCloseModal()}
+          onClick={() => this.changeModalState()}
         >
           <img src="/images/icons/arrow/arrow-white-left@2x.png" alt="Back" />
         </div>
@@ -47,36 +39,34 @@ class Modal extends React.Component {
   };
 
   renderContent = () => {
-    let { content } = this.props
-    return (
-      <div className={style.content}>
-        {content}
-      </div>
-    )
-  }
-
-  render() {
-    let { showModal } = this.state;
-
+    let { content, show } = this.props;
     return (
       <div>
         <ReactModal
-          isOpen={showModal}
+          isOpen={show}
           ariaHideApp={false}
           className={style.modalBox}
           overlayClassName={style.overlay}
         >
-          <div>{this.renderHeader()}{this.renderContent()}</div>
+          <div>
+            {this.renderHeader()}
+            <div className={style.content}>{content}</div>
+          </div>
         </ReactModal>
       </div>
     );
+  };
+
+  render() {
+    return this.renderContent();
   }
 }
 
 Modal.propTypes = {
   title: PropTypes.string,
+  arrow: PropTypes.func,
   show: PropTypes.bool,
-  content: PropTypes.string.isRequired
+  content: PropTypes.object.isRequired
 };
 
 export default Modal;

@@ -2,7 +2,6 @@ import axios from "axios";
 import { BASE_URL, API_HEADER } from "../constants/apiBaseUrl";
 import { unauthorized, internalServerError } from "../containers/errors/statusCodeMessage";
 import { encryptMd5 } from "../utils/cryptography";
-
 class AuthService {
   async authenticate(email, password) {
     try {

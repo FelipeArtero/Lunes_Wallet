@@ -1,9 +1,15 @@
-export const loadingGeneral = () => ({
-  type: "CHANGE_LOADING_GENERAL_STATE"
+export const loadingGeneral = (state) => ({
+  type: "CHANGE_LOADING_GENERAL_STATE",
+  state
 });
 
 export const loadGeneralInfo = password => ({
   type: "GET_GENERAL_INFO_API",
+  password
+});
+
+export const loadWalletInfo = password => ({
+  type: "GET_WALLET_INFO_API",
   password
 });
 

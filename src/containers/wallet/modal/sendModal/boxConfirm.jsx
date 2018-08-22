@@ -1,15 +1,15 @@
 import React from "react";
 
 // STYLE
-import style from "./style.css";
+import style from "../../style.css";
 
 class BoxConfirm extends React.Component {
   render() {
     return (
-      <div className={style.box}>
+      <div className={style.modalBox}>
         <img
           src="/images/icons/privacy/privacy.png"
-          className={style.iconCoin}
+          className={style.modalIconCoin}
         />
         <div>
           Para confirmar sua transação, informe sua senha e conclua o envio de{" "}

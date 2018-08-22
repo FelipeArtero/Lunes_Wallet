@@ -18,17 +18,11 @@ export function* loadGeneralInfo(action) {
     let token = yield call(getAuthToken);
     let seed = yield call(getUserSeedWords);
 
-    let responseCoins = yield call(
-      coinService.getGeneralInfo,
-      token,
-      decryptAes(seed, action.password)
-    );
-
+    let responseCoins = yield call(coinService.getGeneralInfo, token, decryptAes(seed, action.password));
 
     let responseUser = yield call(userService.getUser, token);
     let pictureUser = yield call(userService.getUserPicture, responseUser.data.data.email);
-
-    yield call(coinService.getCoinPriceHistory, "btc", "brl", "1_Y", null, token);
+    
     setAuthToken(responseCoins.token);
     delete responseCoins.token;
 
@@ -51,9 +45,43 @@ export function* loadGeneralInfo(action) {
       type: "CHANGE_LOADING_GENERAL_STATE"
     });
 
+    yield put({
+      type: "SET_WALLET_LOADING"
+    });
+    
     return;
   } catch (error) {
-    console.warn(error);
+    yield put({ type: "CHANGE_SKELETON_ERROR_STATE", state: true });
+    yield put(internalServerError());
+  }
+}
+
+export function* loadWalletInfo(action) {
+  try {
+    let token = yield call(getAuthToken);
+    let seed = yield call(getUserSeedWords);
+
+    let responseCoins = yield call(coinService.getGeneralInfo, token, decryptAes(seed, action.password));
+
+    
+    setAuthToken(responseCoins.token);
+    delete responseCoins.token;
+
+    yield put({
+      type: "GET_GENERAL_INFO",
+      coins: responseCoins
+    });
+
+    yield put({
+      type: "CHANGE_LOADING_GENERAL_STATE"
+    });
+
+    yield put({
+      type: "SET_WALLET_LOADING"
+    });
+    
+    return;
+  } catch (error) {
     yield put({ type: "CHANGE_SKELETON_ERROR_STATE", state: true });
     yield put(internalServerError());
   }

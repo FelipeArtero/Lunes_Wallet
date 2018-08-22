@@ -1,13 +1,13 @@
 import React from "react";
 
 // STYLE
-import style from "./style.css";
+import style from "../../style.css";
 
 class BoxProcess extends React.Component {
   render() {
     return (
-      <div className={style.box}>
-        <img src="/images/coins/LUNES.png" className={style.iconCoin} />
+      <div className={style.modalBox}>
+        <img src="/images/coins/LUNES.png" className={style.modalIconCoin} />
         <div>
           Voce esta enviando{" "}
           <span className={style.totalConfirm}>20,000.00 LUNES </span>
