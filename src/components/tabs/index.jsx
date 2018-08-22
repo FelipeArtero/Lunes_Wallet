@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-import colors from '../../components/bases/colors';
+import colors from "../../components/bases/colors";
 
 const tabStyles = theme => ({
   root: {
     flexGrow: 1,
-    maxWidth: '98%',
+    maxWidth: "98%",
     margin: theme.spacing.unit * 2,
   },
   tabsRoot: {
@@ -20,12 +19,12 @@ const tabStyles = theme => ({
   },
   tabsIndicator: {
     backgroundColor: colors.green.dark,
-    height: '3px',
+    height: "3px",
   },
   tabRoot: {
     backgroundColor: colors.purple.default,
     fontWeight: 600,
-    marginRight: '1px',
+    marginRight: "1px",
     opacity: 0.8,
   }
 });
@@ -44,8 +43,7 @@ class CustomTabs extends React.Component {
 
   renderTabs = () => {
     const { value } = this.state;
-    const { classes } = this.props;
-
+    const { classes, tabTitles, tabContents } = this.props;
     return (
       <Grid container>
         <Grid item xs={12}>
@@ -53,16 +51,15 @@ class CustomTabs extends React.Component {
             value={value}
             onChange={this.handleChange}
             scrollable
-            scrollButtons="auto"
-          >
+            scrollButtons="auto">
             {
-              this.props.tabTitles.map((title, key) => <Tab classes={{ root: classes.tabRoot }} key={key} label={title} />)
+              tabTitles.map((title, key) => <Tab classes={{ root: classes.tabRoot }} key={key} label={title} />)
             }
           </Tabs>
         </Grid>
         <Grid item xs={12}>
           {
-            this.props.tabContents.map((content, key) => value === key ? <div key={key}>{ content }</div> : '')
+            tabContents.map((content, key) => value === key ? <div key={key}>{content}</div> : "")
           }
         </Grid>
       </Grid>
@@ -71,7 +68,6 @@ class CustomTabs extends React.Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <div className={classes.root}>
         {this.renderTabs()}
@@ -80,7 +76,8 @@ class CustomTabs extends React.Component {
   }
 }
 
-CustomTabs.prototypes = {
+CustomTabs.propTypes = {
+  classes: PropTypes.object,
   tabTitles: PropTypes.array.isRequired,
   tabContents: PropTypes.array.isRequired,
 };

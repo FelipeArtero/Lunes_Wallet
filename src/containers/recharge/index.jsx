@@ -5,12 +5,16 @@ const titles = [
   'Voucher',
   'Lunes Gift',
   'Cupom',
+  "Teste 1",
+  "Teste 2"
 ];
 
-const contents  = [
+const contents = [
   <h1>Voucher</h1>,
   <h1>Lunes Gift</h1>,
   <h1>Cupom</h1>,
+  <h1>Teste 1</h1>,
+  <h1>Teste 2</h1>,
 ];
 
 class Recharge extends React.Component {
@@ -21,7 +25,7 @@ class Recharge extends React.Component {
   render() {
     return (
       <div>
-        <Tabs tabTitles={titles} tabContents={contents}/>
+        <Tabs tabTitles={titles} tabContents={contents} />
       </div>
     )
   }
