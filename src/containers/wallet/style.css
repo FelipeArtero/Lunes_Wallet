@@ -412,6 +412,11 @@
   margin-bottom: 10px;
 }
 
+:local(.boxPercentError) {
+  composes: boxPercent;
+  background-color: red;
+}
+
 :local .boxPercent span {
   display: block;
   border: solid 1px rgba(0, 0, 0, 0.5);
@@ -518,4 +523,10 @@
   font-size: 24px;
   font-weight: 700;
   margin-bottom:40px;
+}
+
+:local(.inputAddressError) {
+  composes: inputClear;
+  color: #f05252;
+  border: 1px solid #f05252;
 }

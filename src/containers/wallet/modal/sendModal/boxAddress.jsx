@@ -26,14 +26,24 @@ import style from "../../style.css";
 class BoxAddress extends React.Component {
   constructor() {
     super();
-    this.state = { address: "", isVisible: false };
+    this.state = {
+      address: "",
+      isVisible: false,
+      inputAddressError: false
+    };
   }
 
-  changeAddress = address => this.setState({ address });
+  changeAddress = address => {
+    this.setState({
+      ...this.state,
+      address,
+      inputAddressError: false
+    })
+  };
 
   showQrCodeReader = () => {
     let { isVisible } = this.state;
-    this.setState({ isVisible: !isVisible });
+    this.setState({ ...this.state, isVisible: !isVisible });
   };
 
   validateAddress = () => {
@@ -42,12 +52,18 @@ class BoxAddress extends React.Component {
 
     setWalletSendModalLoading();
     getValidateAddress(coin, address);
+    if (!this.getValidateAddress) {
+      this.setState({
+        ...this.state,
+        inputAddressError: true,
+      })
+    }
 
     return;
   };
 
   handleQrCodeReader = () => {
-    let { isVisible, address } = this.state;
+    let { isVisible, inputAddressError, address } = this.state;
     let { coin, modal } = this.props;
 
     if (isVisible) {
@@ -97,15 +113,17 @@ class BoxAddress extends React.Component {
             type="text"
             name="txtaddress"
             value={address}
+            className={inputAddressError ? style.inputAddressError : style.inputClear}
             onChange={event => this.changeAddress(event.target.value)}
             placeholder="Ex: 37n724hxf4XnCFfJFnCzj4TbYryoizdfGCV"
-            className={style.inputClear}
           />
         </div>
 
         <ButtonContinue
           action={() => this.validateAddress()}
           loading={modal.loading}
+          error={inputAddressError}
+          className={address.length >= 8 ? style.btContinue : undefined}
         />
       </div>
     );

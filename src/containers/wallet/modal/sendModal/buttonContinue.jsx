@@ -12,10 +12,10 @@ import Loading from "../../../../components/loading";
 
 class ButtonContinue extends React.Component {
   render() {
-    const { action, loading, label = i18n.t("BTN_CONFIRM"), error } = this.props;
+    const { action, loading, label = i18n.t("BTN_CONFIRM"), error, className } = this.props;
     return (
       <button
-        className={!error ? style.btContinueDisable : style.btError}
+        className={className && !error ? className : !error ? style.btContinueDisable : style.btError}
         onClick={action}
       >
         {loading ? <Loading /> : label}

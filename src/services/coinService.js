@@ -237,7 +237,7 @@ class CoinService {
 
   async validateAddress(coin, address) {
     try {
-      if (!coin || !address || address.length < 10) {
+      if (!coin || !address || address.length < 8) {
         return modalError(i18n.t("MESSAGE_INVALID_ADDRESS"));
       }
 

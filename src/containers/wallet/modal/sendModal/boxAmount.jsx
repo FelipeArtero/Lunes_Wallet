@@ -21,15 +21,21 @@ class BoxAmount extends React.Component {
   constructor() {
     super();
     this.state = {
-      amount: ""
+      amount: "",
+      toggleAmountError: false,
+      calcPercent: false
     };
   }
 
   setAmount = amount => {
+
     let regex = new RegExp("^[0-9,.]+$");
     amount = amount.replace(",", ".");
     if (!amount || regex.test(amount.toString())) {
-      this.setState({ ...this.state, amount });
+      this.setState({
+        ...this.state,
+        amount
+      });
     }
   };
 
@@ -40,6 +46,10 @@ class BoxAmount extends React.Component {
       coins[coin].decimalPoint
     );
     this.setAmount(calcPercent.toString());
+    this.setState({
+      toggleAmountError: false,
+      calcPercent: true
+    })
   };
 
   confirmAmount = () => {
@@ -52,18 +62,25 @@ class BoxAmount extends React.Component {
       setWalletModalStep
     } = this.props;
     let coinBalance = coins[coin].balance.available;
+
+    if (amount=="") {
+      this.setState({
+        ...this.state,
+        toggleAmountError: true
+      })
+    }
+
     if (parseFloat(amount) <= coinBalance) {
       setWalletSendModalLoading();
       setWalletSendModalAmount(parseFloat(amount));
       setWalletModalStep(2);
       return;
     }
-
     return errorInput("Invalid Amount");
   };
 
   render() {
-    let { amount } = this.state;
+    let { amount, toggleAmountError } = this.state;
     let { modal, coin } = this.props;
 
     return (
@@ -98,7 +115,10 @@ class BoxAmount extends React.Component {
         <div className={style.paddingTop8}>
           <ButtonContinue
             action={() => this.confirmAmount()}
+            error={toggleAmountError && errorInput}
             loading={modal.loading}
+            className={this.state.calcPercent ? style.btContinue : undefined}
+
           />
         </div>
       </div>
