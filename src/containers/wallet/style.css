@@ -509,6 +509,12 @@
   max-width: 260px;
 }
 
+:local(.inputTextDefaultError) {
+  composes: inputTextDefault;
+  color: #f05252;
+  border: 1px solid #f05252;
+}
+
 :local(.processInfo) {
   padding-bottom: 30px;
 }

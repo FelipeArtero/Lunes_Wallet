@@ -115,7 +115,7 @@ class BoxAmount extends React.Component {
         <div className={style.paddingTop8}>
           <ButtonContinue
             action={() => this.confirmAmount()}
-            error={toggleAmountError && errorInput}
+            error={toggleAmountError}
             loading={modal.loading}
             className={this.state.calcPercent ? style.btContinue : undefined}
 

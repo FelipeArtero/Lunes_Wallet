@@ -79,7 +79,6 @@ class Header extends React.Component {
     let coinFiat = coins[coinSelected]
       ? (coins[coinSelected].price[fiatSelected].price * coinBalance).toFixed(2)
       : 0;
-
     return (
       <div className={style.boxBalance}>
         <Hidden xsDown>

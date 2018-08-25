@@ -23,32 +23,58 @@ class BoxConfirm extends React.Component {
   constructor() {
     super();
     this.state = {
+      togglePasswordError: false,
+      errorInput: false,
       password: ""
     };
   }
 
   setPassword = password => {
-    this.setState({ ...this.state, password });
+    this.setState({
+      ...this.state,
+      password,
+      togglePasswordError: false,
+      errorInput: false
+    });
   };
 
   confirmPassword = () => {
     let { password } = this.state;
     let { user, errorInput, setWalletModalStep } = this.props;
+    if (password == "" || password.length < 8) {
+      this.setState({
+        ...this.state,
+        togglePasswordError: true
+      })
+    }
 
     if (user.password === encryptHmacSha512Key(password)) {
       setWalletModalStep(4);
       return;
     }
-    errorInput("Invalid Password");
+
+    errorInput(
+      "Invalid Password",
+      this.setState({
+        ...this.state,
+        errorInput: true
+      })
+    );
     return;
   };
 
+  handleKeyPress = (target) => {
+    if (target.charCode == 13) {
+      this.confirmPassword()
+    }
+  }
+  
   render() {
-    let { password } = this.state;
+    let { password, togglePasswordError, errorInput } = this.state;
     let { coin, modal } = this.props;
 
     return (
-      <div className={style.modalBox}>
+      <div className={style.modalBox} onKeyPress={this.handleKeyPress}>
         <img
           src="/images/icons/privacy/privacy.png"
           className={style.modalIconCoin}
@@ -71,13 +97,15 @@ class BoxConfirm extends React.Component {
             placeholder="*********"
             onChange={event => this.setPassword(event.target.value)}
             value={password}
-            className={style.inputTextDefault}
+            className={togglePasswordError || errorInput ? style.inputTextDefaultError : style.inputTextDefault}
           />
         </div>
 
         <ButtonContinue
           action={() => this.confirmPassword()}
           loading={modal.loading}
+          error={(togglePasswordError) || (errorInput)}
+          className={password.length >= 8 ? style.btContinue : undefined}
         />
       </div>
     );
